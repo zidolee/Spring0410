@@ -1,7 +1,14 @@
 package polymorphism;
 
-public class LgTv implements TV {
+import org.springframework.stereotype.Component;
 
+@Component("tv")
+public class LgTv implements TV {
+	
+	public LgTv() {
+		System.out.println("===> LgTv 객체 생성");
+	}
+	
 	@Override
 	public void powerOn() {
 		System.out.println("LgTv---전원켜다");

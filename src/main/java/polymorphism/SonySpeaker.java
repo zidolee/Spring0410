@@ -1,15 +1,16 @@
 package polymorphism;
 
-public class SonySpeaker {
+public class SonySpeaker implements Speaker{
 	public SonySpeaker() {
-		System.out.println("===> SoneySpeaker 생성자-객체 생성");
+		System.out.println("===> SonySpeaker 생성자-객체 생성");
 	}
 	
+	@Override
 	public void volumeUp() {
 		System.out.println("SonySpaeker---소리 율린다.");
 	}
-	
+	@Override
 	public void volumeDown() {
-		System.out.println("SoneySpeaker---소리 내린다.");
+		System.out.println("SonySpeaker---소리 내린다.");
 	}
 }
