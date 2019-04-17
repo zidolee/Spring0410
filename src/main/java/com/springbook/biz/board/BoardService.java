@@ -1,8 +1,6 @@
-package com.springbook.biz.board.impl;
+package com.springbook.biz.board;
 
 import java.util.List;
-
-import com.springbook.biz.board.BoardVO;
 
 public interface BoardService {
 
@@ -17,7 +15,8 @@ public interface BoardService {
 
 	//글 상세 조회
 	BoardVO getBoardVO(BoardVO vo);
-
+	
+	//글 목록 조회 
 	List<BoardVO> getBoardList(BoardVO vo);
 
 }
