@@ -7,13 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-
+import com.springbook.biz.common.Log4jAdvice;
+import com.springbook.biz.common.LogAdvice;
+//조인포인트
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	@Override
+	@Override//포인트컷 대상(메서드)
 	public void insertBoard(BoardVO vo) {
 		boardDAO.insertBoard(vo);
 	}
