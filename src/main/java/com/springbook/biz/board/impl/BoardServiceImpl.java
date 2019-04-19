@@ -1,5 +1,6 @@
 package com.springbook.biz.board.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,13 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override//포인트컷 대상(메서드)
 	public void insertBoard(BoardVO vo) {
+//		after-throwing test
+//		if(vo.getSeq() == 0) {
+//			throw new IllegalArgumentException("0번 글은 등록 할 수 없습니다.");
+//		}
+//		if(vo.getWriter().equals("홍길동")) {
+//			throw new IllegalArgumentException("중복 에라");
+//		}
 		boardDAO.insertBoard(vo);
 	}
 

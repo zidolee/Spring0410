@@ -56,7 +56,8 @@
 	<!-- ********************************************************************************* -->
 	<!--  AOP -->
 	<context:component-scan base-package="com.springbook.biz" />
-	<bean id="log" class="com.springbook.biz.common.LogAdvice"/>
+	<!-- 143 ~ 170 -->
+	<!-- <bean id="log" class="com.springbook.biz.common.LogAdvice"/>
 	<aop:config>
 		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
 		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))" />
@@ -64,5 +65,57 @@
 		<aop:aspect ref="log">
 			<aop:before pointcut-ref="getPointcut" method="printLog"/>
 		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- 172, 185 before advice -->
+	<bean id="before" class="com.springbook.biz.common.BeforeAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		
+		<aop:aspect ref="before">
+			<aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+		</aop:aspect>
 	</aop:config>
+	
+	<!-- 174 after returning advice -->
+	<!-- <bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
+	<aop:config>
+		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))" />
+		
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning pointcut-ref="getPointcut" method="afterLog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- 176 after throwing advice -->
+	<!-- <bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"/>
+	<aop:config>
+		<aop:pointcut id="allPointCut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing pointcut-ref="allPointCut" method="exeptionLog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- 178, after advice -->
+	<!-- <bean id="after" class="com.springbook.biz.common.AfterAdvice"/>
+	
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		
+		<aop:aspect ref="after">
+			<aop:after pointcut-ref="allPointcut" method="finallylog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- 180, around advice -->
+	<!-- <bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
+	
+	<aop:config>
+		<aop:pointcut id="allPointCut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		
+		<aop:aspect ref="around">
+			<aop:around pointcut-ref="allPointCut" method="aroundLog"/>
+		</aop:aspect>
+	</aop:config> -->	
 </beans>
