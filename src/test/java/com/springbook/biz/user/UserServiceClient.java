@@ -14,10 +14,10 @@ public class UserServiceClient {
 		// 3. 사용자 등록
 		UserVO userVo = new UserVO();
 		
-		userVo.setId("test");
+		userVo.setId("test3");
 		userVo.setPassword("123");
 		userVo.setName("소농민");
-		userVo.setRole("관리자");
+		userVo.setRole("admin");
 		
 //		userService.insetUserVO(userVo);
 		// 4. 사용자 검색(로그인 처리)

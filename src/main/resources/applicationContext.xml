@@ -54,8 +54,11 @@
 	
 	
 	<!-- ********************************************************************************* -->
-	<!--  AOP -->
+	
+	<!-- 어노테이션 DI -->
 	<context:component-scan base-package="com.springbook.biz" />
+	<!-- 어노테이션 aop -->
+	<aop:aspectj-autoproxy />
 	<!-- 143 ~ 170 -->
 	<!-- <bean id="log" class="com.springbook.biz.common.LogAdvice"/>
 	<aop:config>
@@ -68,14 +71,14 @@
 	</aop:config> -->
 	
 	<!-- 172, 185 before advice -->
-	<bean id="before" class="com.springbook.biz.common.BeforeAdvice" />
+	<!-- <bean id="before" class="com.springbook.biz.common.BeforeAdvice" />
 	<aop:config>
 		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
 		
 		<aop:aspect ref="before">
 			<aop:before pointcut-ref="allPointcut" method="beforeLog"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
 	
 	<!-- 174 after returning advice -->
 	<!-- <bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
@@ -83,17 +86,17 @@
 		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))" />
 		
 		<aop:aspect ref="afterReturning">
-			<aop:after-returning pointcut-ref="getPointcut" method="afterLog"/>
+			<aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
 		</aop:aspect>
 	</aop:config> -->
 	
-	<!-- 176 after throwing advice -->
+	<!-- 176,188 after throwing advice -->
 	<!-- <bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"/>
 	<aop:config>
 		<aop:pointcut id="allPointCut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
 		
 		<aop:aspect ref="afterThrowing">
-			<aop:after-throwing pointcut-ref="allPointCut" method="exeptionLog"/>
+			<aop:after-throwing pointcut-ref="allPointCut" method="exeptionLog" throwing="exceptObj"/>
 		</aop:aspect>
 	</aop:config> -->
 	
@@ -108,7 +111,7 @@
 		</aop:aspect>
 	</aop:config> -->
 	
-	<!-- 180, around advice -->
+	<!-- 180, 192  around advice -->
 	<!-- <bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
 	
 	<aop:config>
