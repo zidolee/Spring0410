@@ -1,6 +1,5 @@
 package com.springbook.biz.board.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.common.Log4jAdvice;
-import com.springbook.biz.common.LogAdvice;
 //조인포인트
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
-	private BoardDAO boardDAO;
+//	private BoardDAO boardDAO;
+//	private BoardDAOSpring boardDAO;
+	private BoardDAOSpring2 boardDAO;
 	
 	@Override//포인트컷 대상(메서드)
 	public void insertBoard(BoardVO vo) {
@@ -40,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoardVO(BoardVO vo) {
-		return boardDAO.getBoardVO(vo);
+		return boardDAO.getBoard(vo);
 	}
 
 	@Override
