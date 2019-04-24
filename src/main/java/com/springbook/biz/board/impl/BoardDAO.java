@@ -23,7 +23,7 @@ public class BoardDAO {
 	private final String BOARD_UPDATE = "update board set title=?, "
 			+ "content=? where seq?";
 	private final String BOARD_DELETE = "delete board where seq=?";
-	private final String BOARD_GET = "select * form board where seq=?";
+	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
 	
 	
