@@ -1,8 +1,9 @@
-<%@page import="java.util.List"%>
+<%-- <%@page import="java.util.List"%>
 <%@page import="com.springbook.biz.board.impl.BoardDAO"%>
-<%@page import="com.springbook.biz.board.BoardVO"%>
+<%@page import="com.springbook.biz.board.BoardVO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 <body>
 	<%
 		// 세션에 저장된 글 목록을 꺼냄
-		List<BoardVO> boardList = (List)session.getAttribute("boardList");
+//		List<BoardVO> boardList = (List)session.getAttribute("boardList");
 		/* BoardVO vo = new BoardVO();
 		BoardDAO boardDAO = new BoardDAO();
 		List<BoardVO> boardList = boardDAO.getBoardList(vo); */
@@ -50,15 +51,17 @@
 				<th bgcolor="orange" width="150">등록일</th>
 				<th bgcolor="orange" width="100">조회수</th>
 			<tr>
-		<% for(BoardVO board : boardList){ %>
+		<%-- <% for(BoardVO board : boardList){ %> --%>
+		<c:forEach items="${boardList }" var="board">
 			<tr>
-				<td align="center"><%=board.getSeq() %></td>
-				<td align="left">&nbsp;<a href="getBoard.do?seq=<%= board.getSeq()%>"><%=board.getTitle() %></a></td>
-				<td align="center"><%=board.getWriter() %></td>
-				<td align="center"><%=board.getRegDate() %></td>
-				<td align="center"><%=board.getCnt() %></td>
+				<td align="center">${board.seq }</td>
+				<td align="left">&nbsp;<a href="getBoard.do?seq=${board.seq }">${board.title }</a></td>
+				<td align="center">${board.writer }</td>
+				<td align="center">${board.regDate }</td>
+				<td align="center">${board.cnt }</td>
 			</tr>
-		<%} %>	
+		</c:forEach>
+		<%-- <%} %>	 --%>
 		</table>
 		<br>
 		<a href="insertBoard.jsp">새글 등록</a>
