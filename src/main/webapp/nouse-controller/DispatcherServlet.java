@@ -14,7 +14,6 @@ import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
-import com.springbook.view.user.HandlerMapping;
 
 /*@WebServlet("*.do")*/
 public class DispatcherServlet extends HttpServlet {
