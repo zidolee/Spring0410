@@ -23,7 +23,7 @@
 	%>
 	<div align="center">
 		<h1>글 상세</h1>
-		<a href="logut.do">Log-out</a>
+		<a href="logout.do">Log-out</a>
 		<hr>
 		<form action="updateBoard.do" method="post">
 		<input type="hidden" name="seq" value="${board.seq }">
