@@ -11,9 +11,9 @@ import com.springbook.biz.board.BoardVO;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
-//	private BoardDAO boardDAO;
+	private BoardDAO boardDAO;
 //	private BoardDAOSpring boardDAO;
-	private BoardDAOSpring2 boardDAO;
+//	private BoardDAOSpring2 boardDAO;
 	
 	@Override//포인트컷 대상(메서드)
 	public void insertBoard(BoardVO vo) {
@@ -38,7 +38,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO getBoardVO(BoardVO vo) {
+	public BoardVO getBoard(BoardVO vo) {
 		return boardDAO.getBoard(vo);
 	}
 

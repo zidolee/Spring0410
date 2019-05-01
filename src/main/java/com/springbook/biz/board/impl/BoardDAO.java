@@ -78,7 +78,7 @@ public class BoardDAO {
 	}
 	
 	//글 상세 조회
-	public BoardVO getBoardVO(BoardVO vo) {
+	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 getBoard() 기능 처리");
 		BoardVO board = null;
 		

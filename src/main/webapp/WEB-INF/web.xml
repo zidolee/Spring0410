@@ -8,7 +8,8 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/hello.do</url-pattern>
   </servlet-mapping> -->
- 
+  
+ <!-- encoding Setting -->
  <filter>
  	<filter-name>characterEncoding</filter-name>
  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -23,6 +24,7 @@
 	<url-pattern>*.do</url-pattern>
  </filter-mapping>
  
+ <!-- Dispatcher Setting(Controller) -->
   <servlet>
     <servlet-name>action</servlet-name>
     <!-- <servlet-class>com.springbook.view.controller.DispatcherServlet</servlet-class> -->
@@ -37,4 +39,17 @@
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- ContextLoaderListener add -->
+  <!-- Controller에 Autowired된 Service를 먼저 bean으로 생성 하기 위해 -->
+  <!-- needed for ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext2.xml</param-value>
+	</context-param>
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 </web-app>
