@@ -24,6 +24,9 @@ public class BoardDAOSpring extends JdbcDaoSupport {
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET = "select * form board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
+	private final String BOARD_LIST_T = "select * from board where title like '%'||?||'%' order by seq desc";
+	private final String BOARD_LIST_C = "select * from board where content like '%'||?||'%' order by seq desc";
+	private final String BOARD_LIST_W = "select * from board where writer like '%'||?||'%' order by seq desc";
 	
 	@Autowired
 	public void setSuperDataSource(DataSource dataSource) {
@@ -59,7 +62,15 @@ public class BoardDAOSpring extends JdbcDaoSupport {
 	//글 목록조회
 	public List<BoardVO>  getBoardList(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 getBoardList() 기능 처리");
-		return getJdbcTemplate().query(BOARD_LIST, new BoardRowMapper());
+		Object[] args = {vo.getSearchKeyword()};
+		if(vo.getSearchCondition().equals("TITLE")) {
+			return getJdbcTemplate().query(BOARD_LIST_T, args, new BoardRowMapper());
+		} else if(vo.getSearchCondition().equals("CONTENT")) {
+			return getJdbcTemplate().query(BOARD_LIST_C, args,  new BoardRowMapper());
+		} else if(vo.getSearchCondition().equals("WRITER")) {
+			return getJdbcTemplate().query(BOARD_LIST_W, args, new BoardRowMapper2());
+		}
+		return null;
 	}
 }
 

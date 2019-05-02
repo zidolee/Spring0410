@@ -48,6 +48,12 @@ public class LoginController {
 //			mav.setViewName("redirect:login.jsp");;
 //		}
 //		return mav;
+		if(vo.getId() == null || vo.getId().equals("")) {
+			throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다.");
+		}
+		if(vo.getPassword() == null || vo.getPassword().equals("")) {
+			throw new IllegalArgumentException("패스워드는 반드시 입력해야 합니다.");
+		}
 		UserVO user = userDAO.getUser(vo);
 //		if(userDAO.getUser(vo) != null) return "redirect:getBoardList.do";
 //		else return "redirect:login.jsp";

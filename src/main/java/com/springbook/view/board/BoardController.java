@@ -1,5 +1,7 @@
 package com.springbook.view.board;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,12 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.board.impl.BoardDAO;
 
 @Controller
 @SessionAttributes("board")
@@ -32,8 +33,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/insertBoard.do")	//value=생략 가능
-	public String insertBoard(BoardVO vo) {
+	public String insertBoard(BoardVO vo) throws IOException {
 		System.out.println("글 등록 처리");
+		
+		//파일 업로드
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			uploadFile.transferTo(new File("C:/temp/" + fileName));
+		}
 		
 		boardService.insertBoard(vo);
 		return "redirect:getBoardList.do";
@@ -71,13 +79,12 @@ public class BoardController {
 	
 	
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(
-			@RequestParam(value="searchCondition", defaultValue="TITLE") String condition,  
-			@RequestParam(value="searchKeyword", defaultValue="", required=false) String keyword,
-			BoardVO vo, Model model) {
-//		System.out.println("검색 조건" + condition);
-//		System.out.println("검색 단어" + keyword);
-//		System.out.println("글 목록 검색 처리");
+	public String getBoardList(BoardVO vo, Model model) {
+		System.out.println("글 목록 검색 처리");
+		
+		// Null Check
+		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
+		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
 		model.addAttribute("boardList", boardService.getBoardList(vo));
 		return "getBoardList.jsp";
 	}

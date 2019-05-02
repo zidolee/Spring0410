@@ -29,8 +29,11 @@ public class BoardDAOSpring2 {
 	private final String BOARD_UPDATE = "update board set title=?, "
 			+ "content=? where seq?";
 	private final String BOARD_DELETE = "delete board where seq=?";
-	private final String BOARD_GET = "select * form board where seq=?";
+	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
+	private final String BOARD_LIST_T = "select * from board where title like '%'||?||'%' order by seq desc";
+	private final String BOARD_LIST_C = "select * from board where content like '%'||?||'%' order by seq desc";
+	private final String BOARD_LIST_W = "select * from board where writer like '%'||?||'%' order by seq desc";
 
 	//crud 기능의 메소드 구현
 	//글 등록
@@ -61,7 +64,15 @@ public class BoardDAOSpring2 {
 	//글 목록조회
 	public List<BoardVO>  getBoardList(BoardVO vo) {
 		System.out.println("===> Spring2 JDBC로 getBoardList() 기능 처리");
-		return jdbcTemplate.query(BOARD_LIST, new BoardRowMapper2());
+		Object[] args = {vo.getSearchKeyword()};
+		if(vo.getSearchCondition().equals("TITLE")) {
+			return jdbcTemplate.query(BOARD_LIST_T, args, new BoardRowMapper2());
+		} else if(vo.getSearchCondition().equals("CONTENT")) {
+			return jdbcTemplate.query(BOARD_LIST_C, args,  new BoardRowMapper2());
+		} else if(vo.getSearchCondition().equals("WRITER")) {
+			return jdbcTemplate.query(BOARD_LIST_W, args, new BoardRowMapper2());
+		}
+		return null;
 	}
 }
 
