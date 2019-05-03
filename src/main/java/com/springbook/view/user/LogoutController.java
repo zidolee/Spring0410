@@ -23,7 +23,7 @@ public class LogoutController {
 //		mav.setViewName("redirect:login.jsp");
 //		return mav;
 		session.invalidate();
-		return "redirect:login.jsp";
+		return "redirect:login.do";
 	}
 
 }
